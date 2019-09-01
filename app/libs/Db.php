@@ -14,7 +14,7 @@ class Db {
     protected static $_instance;
 
     private function __construct() {
-        $this->_config = require(__DIR__ . '/../config.php');
+        $this->_config = require_once(__DIR__ . '/../config.php');
         try {
             $this->_connect = new \PDO(
                 $this->_config['database']['dsn'],

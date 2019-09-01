@@ -2,6 +2,8 @@
 
 use Libs\Db;
 
+require_once(__DIR__ . '/../bootstrap.php');
+
 $url = 'http://www.cbr.ru/scripts/XML_daily.asp';
 
 $curlResource = curl_init();
