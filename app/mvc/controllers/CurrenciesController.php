@@ -2,36 +2,34 @@
 
 namespace Mvc\Controllers;
 
-use Libs\Db;
-
-class CurrenciesController {
+class CurrenciesController extends BaseController {
 
     public function exec($params) {
-        $db = Db::getInstance();
-
         $count = $params['count'];
         $page = $params['page'];
         $offset = $count * ($page - 1);
 
-        $sql = 'SELECT * FROM currency';
+        $sql = 'SELECT * FROM ' . $this->_table;
 
         if (isset($count)) {
             $limit = ' LIMIT ' . $count . ' OFFSET ' . $offset;
             $sql .= $limit;
         }
 
-        $pdoStatePrepared = $db->prepare($sql);
+        $pdoStatePrepared = $this->_db->prepare($sql);
         $pdoStatePrepared->execute();
         $resultRaw = $pdoStatePrepared->fetchAll();
 
         foreach ($resultRaw as $row) {
             $result[] = [
+                'id' => $row['id'],
                 'name' => $row['name'],
                 'rate' => $row['rate']
             ];
         }
 
-        echo json_encode($result, JSON_FORCE_OBJECT);
+        http_response_code(200);
+        $this->setHeaders();
+        echo json_encode($result, JSON_FORCE_OBJECT | JSON_UNESCAPED_UNICODE);
     }
-
 }

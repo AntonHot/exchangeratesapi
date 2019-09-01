@@ -2,23 +2,22 @@
 
 namespace Mvc\Controllers;
 
-use Libs\Db;
-
-class CurrencyController {
+class CurrencyController extends BaseController {
 
     public function exec($params) {
-        $db = Db::getInstance();
-
-        $sql = 'SELECT * FROM currency WHERE id = ?';
-        $pdoStatePrepared = $db->prepare($sql);
+        $sql = 'SELECT * FROM ' . $this->_table . ' WHERE id = ?';
+        $pdoStatePrepared = $this->_db->prepare($sql);
         $pdoStatePrepared->execute([$params['id']]);
         $resultRaw= $pdoStatePrepared->fetch();
 
         $result = [
+            'id' => $resultRaw['id'],
             'name' => $resultRaw['name'],
             'rate' => $resultRaw['rate']
         ];
-        
-        echo json_encode($result, JSON_FORCE_OBJECT);
+
+        http_response_code(200);
+        $this->setHeaders();
+        echo json_encode($result, JSON_UNESCAPED_UNICODE);
     }
 }
