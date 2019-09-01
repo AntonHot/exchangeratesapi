@@ -8,8 +8,13 @@ use Libs\Exceptions\ValidateException;
 
 class Front {
 
+    /** @var string */
     private $controller;
+
+    /** @var string */
     private $method;
+    
+    /** @var string */
     private $params;
 
     public function __construct($data) {

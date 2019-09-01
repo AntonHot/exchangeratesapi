@@ -1,4 +1,4 @@
-# Техническое задание
+# ТЗ
 
 1. Создать базу данных  
 Таблица **currency**  
@@ -12,5 +12,3 @@
 	* **GET /currency/** — должен возвращать курс валюты для переданного id  
 	* Должна быть реализована авторизация по токену  
 * Можно использовать SLIM framework
-
-JWT =  eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxIiwibmFtZSI6Ikl2YW4gSXZhbm92IiwiaWF0IjoyNTU2MDkwMDAwfQ.gL9RzfBbM9AJsNL3lKCpQdKzUfvnYtZV8ck9CIaifd8

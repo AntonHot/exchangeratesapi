@@ -1,0 +1,9 @@
+<?php
+
+return [
+    'database' => [
+        'dsn' => 'mysql:dbname=XXX;host=127.0.0.1',
+        'user' => 'xxx',
+        'password' => 'xxx'
+    ]
+];

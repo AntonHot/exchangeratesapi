@@ -18,10 +18,19 @@ $db = Db::getInstance();
 $sql = 'REPLACE INTO currency SET id = ?, name = ?, rate = ?';
 $pdoStatePrepared = $db->prepare($sql);
 
+$i = 0;
 foreach ($valuteXML->Valute as $valuta) {
     $id = reset($valuta['ID']);
     $name = reset($valuta->Name);
     $rate = floatval(str_replace(',','.',reset($valuta->Value)));
     $options = [$id, $name, $rate];
-    $pdoStatePrepared->execute($options);
+    $result = $pdoStatePrepared->execute($options);
+    if ($result) {
+        $i++;
+    }
 }
+
+http_response_code(200);
+echo json_encode(array(
+    'Обновлено котировок' => $i
+), JSON_UNESCAPED_UNICODE);

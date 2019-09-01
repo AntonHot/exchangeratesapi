@@ -26,6 +26,7 @@ class Db {
         }
     }
 
+    /** @return Db */
     public static function getInstance() {
         if (self::$_instance === null) {
             self::$_instance = new self;
@@ -37,9 +38,7 @@ class Db {
         return $this->_connect->prepare($sql);
     }    
   
-    private function __clone() {
-    }
+    private function __clone() {}
 
-    private function __wakeup() {
-    }     
+    private function __wakeup() {}     
 }

@@ -1,4 +1,6 @@
-{
+{   
+    "name": "antonhot/exchangeratesapi",
+    "description": "Api for getting currency rates",
     "require": {
         "slim/slim": "2.*"
     },
