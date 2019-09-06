@@ -12,11 +12,11 @@ class Validator {
         $user = self::decode($jwt);
         
         if ($user['body']->name !== self::$_userName) {
-            throw new ValidateException('There is no such user!');
+            throw new ValidateException('There is no such user');
         }
         
         if ($user['body']->iat < time()) {
-            throw new ValidateException('The key has expired!');
+            throw new ValidateException('The key has expired');
         }
     }
 
@@ -24,7 +24,7 @@ class Validator {
         $jwtExploded = explode('.', $jwt);
 
         if (count($jwtExploded) !== 3) {
-            throw new ValidateException('Wrong key!');
+            throw new ValidateException('Wrong key');
         }
 
         list($headb64, $bodyb64, $cryptob64) = $jwtExploded;
