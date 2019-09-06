@@ -25,7 +25,7 @@ class Front {
         } catch (ValidateException $e){
             http_response_code(401);
             echo json_encode(array(
-                "message" => "Access denied!",
+                "message" => "Access denied",
                 "error" => $e->getMessage()
             ));
             die;
